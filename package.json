@@ -1,0 +1,23 @@
+{
+  "name": "strophe.jinglejs",
+  "version": "0.1.0",
+  "description": "This package adds jingle.js to strophe.js",
+  "main": "strophe.jinglejs.js",
+  "author": "Klaus Herberth <klaus@jsxc.org>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sualko/strophe.jinglejs"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "jingle": "^1.7.0",
+    "jxt": "^3.0.3",
+    "webrtc-adapter-test": "^0.1.2"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^3.8.0",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-jsbeautifier": "^0.2.10"
+  }
+}
