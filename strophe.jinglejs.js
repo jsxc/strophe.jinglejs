@@ -81,21 +81,10 @@ jxt.use(require('./stanza/iceUdp.js'));
          });
 
          if (this.connection.disco) {
-            // http://xmpp.org/extensions/xep-0167.html#support
-            // http://xmpp.org/extensions/xep-0176.html#support
-            this.connection.disco.addFeature('urn:xmpp:jingle:1');
-            this.connection.disco.addFeature('urn:xmpp:jingle:apps:rtp:1');
-            this.connection.disco.addFeature('urn:xmpp:jingle:transports:ice-udp:1');
-            this.connection.disco.addFeature('urn:xmpp:jingle:apps:rtp:audio');
-            this.connection.disco.addFeature('urn:xmpp:jingle:apps:rtp:video');
-
-
-            // this is dealt with by SDP O/A so we don't need to annouce this
-            //this.connection.disco.addFeature('urn:xmpp:jingle:apps:rtp:rtcp-fb:0'); // XEP-0293
-            //this.connection.disco.addFeature('urn:xmpp:jingle:apps:rtp:rtp-hdrext:0'); // XEP-0294
-            this.connection.disco.addFeature('urn:ietf:rfc:5761'); // rtcp-mux
-            //this.connection.disco.addFeature('urn:ietf:rfc:5888'); // a=group, e.g. bundle
-            //this.connection.disco.addFeature('urn:ietf:rfc:5576'); // a=ssrc
+            var i;
+            for (i = 0; i < self.manager.capabilities.length; i++) {
+               self.connection.disco.addFeature(self.manager.capabilities[i]);
+            }
          }
          this.connection.addHandler(this.onJingle.bind(this), 'urn:xmpp:jingle:1', 'iq', 'set', null, null);
 
@@ -150,7 +139,7 @@ jxt.use(require('./stanza/iceUdp.js'));
          this.manager.addICEServer(server);
       },
       setICEServers: function(servers) {
-         //this.manager.iceServers = servers;
+         this.manager.iceServers = servers;
       },
       setPeerConstraints: function(constraints) {
          this.manager.config.peerConnectionConstraints = constraints;
