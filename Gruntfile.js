@@ -10,7 +10,7 @@ module.exports = function(grunt) {
             gruntfile: {
                 src: 'Gruntfile.js'
             },
-            files: ['*.js']
+            files: ['strophe.jinglejs.js']
         },
         jsbeautifier: {
             module: {
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         },
         browserify: {
             module:{src: ['strophe.jinglejs.js'],
-            dest: 'build/strophe.jinglejs-bundle.js'}
+            dest: 'strophe.jinglejs-bundle.js'}
         }
     });
 
