@@ -10,6 +10,11 @@ jxt.use(require('./stanza/jingle.js'));
 jxt.use(require('./stanza/rtp.js'));
 jxt.use(require('./stanza/iceUdp.js'));
 
+var IqStanza = jxt.getDefinition('iq', 'jabber:client');
+var JingleStanza = jxt.getDefinition('jingle', 'urn:xmpp:jingle:1');
+
+jxt.extend(IqStanza, JingleStanza);
+
 (function($) {
    Strophe.addConnectionPlugin('jingle', {
       connection: null,
@@ -53,11 +58,6 @@ jxt.use(require('./stanza/iceUdp.js'));
             jid: self.connection.jid,
             selfID: self.connection.jid
          });
-
-         var IqStanza = jxt.getDefinition('iq', 'jabber:client');
-         var JingleStanza = jxt.getDefinition('jingle', 'urn:xmpp:jingle:1');
-
-         jxt.extend(IqStanza, JingleStanza);
 
          var events = {
             'incoming': 'callincoming.jingle',
