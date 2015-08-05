@@ -3,6 +3,10 @@
 module.exports = function(grunt) {
 
     grunt.initConfig({
+        app: grunt.file.readJSON('package.json'),
+        meta: {
+           banner: grunt.file.read('banner.js')
+        },
         jshint: {
             options: {
                 jshintrc: '.jshintrc'
@@ -26,12 +30,24 @@ module.exports = function(grunt) {
         browserify: {
             module:{src: ['strophe.jinglejs.js'],
             dest: 'strophe.jinglejs-bundle.js'}
+        },
+        usebanner: {
+          dist: {
+             options: {
+                position: 'top',
+                banner: '<%= meta.banner %>'
+             },
+             files: {
+                src: ['strophe.jinglejs-bundle.js']
+             }
+          }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-jsbeautifier');
     grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-banner');
 
-    grunt.registerTask('default', ['jshint', 'jsbeautifier', 'browserify']);
+    grunt.registerTask('default', ['jshint', 'jsbeautifier', 'browserify', 'usebanner']);
 };
