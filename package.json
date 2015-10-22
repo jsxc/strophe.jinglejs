@@ -13,6 +13,8 @@
   "dependencies": {
     "jingle": "^1.7.1",
     "jxt": "^3.0.4",
+    "jxt-xmpp": "^1.2.3",
+    "jxt-xmpp-types": "^3.0.0",
     "webrtc-adapter-test": "^0.2.1"
   },
   "devDependencies": {

@@ -3,17 +3,12 @@
 
 var JSM = require('jingle');
 var RTC = require('webrtc-adapter-test');
-var jxt = require('jxt').createRegistry();
 
-jxt.use(require('./stanza/iq.js'));
-jxt.use(require('./stanza/jingle.js'));
-jxt.use(require('./stanza/rtp.js'));
-jxt.use(require('./stanza/iceUdp.js'));
+var jxt = require('jxt').createRegistry();
+jxt.use(require('jxt-xmpp-types'));
+jxt.use(require('jxt-xmpp'));
 
 var IqStanza = jxt.getDefinition('iq', 'jabber:client');
-var JingleStanza = jxt.getDefinition('jingle', 'urn:xmpp:jingle:1');
-
-jxt.extend(IqStanza, JingleStanza);
 
 (function($) {
    Strophe.addConnectionPlugin('jingle', {
