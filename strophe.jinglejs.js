@@ -95,7 +95,7 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
       onJingle: function(iq) {
          var req = jxt.parse(iq.outerHTML);
 
-         this.manager.process(req);
+         this.manager.process(req.toJSON());
 
          return true;
       },
