@@ -105,7 +105,7 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
 
          return true;
       },
-      initiate: function(peerjid, stream) { // initiate a new jinglesession to peerjid
+      initiate: function(peerjid, stream, offerOptions) { // initiate a new jinglesession to peerjid
          var session = this.manager.createMediaSession(peerjid);
 
          session.on('change:connectionState', function(session, state) {
@@ -119,7 +119,7 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
          // configure session
          if (this.localStream) {
             session.addStream(this.localStream);
-            session.start();
+            session.start(offerOptions);
 
             return session;
          }
