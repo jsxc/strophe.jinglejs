@@ -3,6 +3,8 @@
 
 var JSM = require('jingle');
 var RTC = require('webrtc-adapter-test');
+var GUM = require('getusermedia');
+var GSM = require('getscreenmedia');
 
 var jxt = require('jxt').createRegistry();
 jxt.use(require('jxt-xmpp-types'));
@@ -18,11 +20,15 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
       localStream: null,
       manager: null,
       RTC: null,
+      getUserMedia: null,
+      getScreenMedia: null,
 
       init: function(conn) {
          var self = this;
 
          self.RTC = RTC;
+         self.getUserMedia = GUM;
+         self.getScreenMedia = GSM;
 
          self.connection = conn;
 
