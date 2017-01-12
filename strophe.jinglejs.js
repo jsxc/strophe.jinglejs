@@ -3,17 +3,14 @@
 
 var JSM = require('jingle');
 var RTC = require('webrtc-adapter-test');
-var jxt = require('jxt').createRegistry();
+var GUM = require('getusermedia');
+var GSM = require('getscreenmedia');
 
-jxt.use(require('./stanza/iq.js'));
-jxt.use(require('./stanza/jingle.js'));
-jxt.use(require('./stanza/rtp.js'));
-jxt.use(require('./stanza/iceUdp.js'));
+var jxt = require('jxt').createRegistry();
+jxt.use(require('jxt-xmpp-types'));
+jxt.use(require('jxt-xmpp'));
 
 var IqStanza = jxt.getDefinition('iq', 'jabber:client');
-var JingleStanza = jxt.getDefinition('jingle', 'urn:xmpp:jingle:1');
-
-jxt.extend(IqStanza, JingleStanza);
 
 (function($) {
    Strophe.addConnectionPlugin('jingle', {
@@ -23,11 +20,15 @@ jxt.extend(IqStanza, JingleStanza);
       localStream: null,
       manager: null,
       RTC: null,
+      getUserMedia: null,
+      getScreenMedia: null,
 
       init: function(conn) {
          var self = this;
 
          self.RTC = RTC;
+         self.getUserMedia = GUM;
+         self.getScreenMedia = GSM;
 
          self.connection = conn;
 
@@ -100,11 +101,11 @@ jxt.extend(IqStanza, JingleStanza);
       onJingle: function(iq) {
          var req = jxt.parse(iq.outerHTML);
 
-         this.manager.process(req);
+         this.manager.process(req.toJSON());
 
          return true;
       },
-      initiate: function(peerjid, stream) { // initiate a new jinglesession to peerjid
+      initiate: function(peerjid, stream, offerOptions) { // initiate a new jinglesession to peerjid
          var session = this.manager.createMediaSession(peerjid);
 
          session.on('change:connectionState', function(session, state) {
@@ -118,7 +119,7 @@ jxt.extend(IqStanza, JingleStanza);
          // configure session
          if (this.localStream) {
             session.addStream(this.localStream);
-            session.start();
+            session.start(offerOptions);
 
             return session;
          }
