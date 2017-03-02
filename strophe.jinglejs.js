@@ -2,7 +2,7 @@
 'use strict';
 
 var JSM = require('jingle');
-var RTC = require('webrtc-adapter-test');
+var RTC = require('webrtc-adapter');
 var GUM = require('getusermedia');
 var GSM = require('getscreenmedia');
 
@@ -32,7 +32,9 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
 
          self.connection = conn;
 
-         if ((RTC.webrtcDetectedVersion < 33 && RTC.webrtcDetectedBrowser === 'firefox') || RTC.webrtcDetectedBrowser === 'chrome') {
+         var browserDetails = self.RTC.browserDetails;
+
+         if ((browserDetails.version < 33 && browserDetails.browser === 'firefox') || browserDetails.browser === 'chrome') {
             self.peer_constraints = {
                mandatory: {
                   'OfferToReceiveAudio': true,
@@ -40,7 +42,7 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
                }
             };
 
-            if (RTC.webrtcDetectedBrowser === 'firefox') {
+            if (browserDetails.browser === 'firefox') {
                self.peer_constraints.mandatory.MozDontOfferDataChannel = true;
             }
          } else {
@@ -49,7 +51,7 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
                'offerToReceiveVideo': true
             };
 
-            if (RTC.webrtcDetectedBrowser === 'firefox') {
+            if (browserDetails.browser === 'firefox') {
                self.peer_constraints.mozDontOfferDataChannel = true;
             }
          }
