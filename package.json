@@ -15,7 +15,7 @@
     "jxt": "^3.0.8",
     "jxt-xmpp": "^2.2.1",
     "jxt-xmpp-types": "^3.0.0",
-    "webrtc-adapter-test": "^0.2.10"
+    "webrtc-adapter": "^3.1.6"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
