@@ -11,6 +11,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "getscreenmedia": "^2.0.0",
+    "getusermedia": "^2.0.1",
     "jingle": "^2.0.0",
     "jxt": "^3.0.8",
     "jxt-xmpp": "^2.2.1",
