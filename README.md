@@ -1,4 +1,4 @@
-[![Dependency Status](https://dependencyci.com/github/sualko/strophe.jinglejs/badge)](https://dependencyci.com/github/sualko/strophe.jinglejs)
+[![Dependency Status](https://dependencyci.com/github/jsxc/strophe.jinglejs/badge)](https://dependencyci.com/github/jsxc/strophe.jinglejs)
 
 strophe.jinglejs
 ==============
