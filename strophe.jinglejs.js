@@ -85,22 +85,22 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
 
          if (this.connection.disco) {
             var capabilities = self.manager.capabilities || [
-                   'urn:xmpp:jingle:1',
-                   'urn:xmpp:jingle:apps:rtp:1',
-                   'urn:xmpp:jingle:apps:rtp:audio',
-                   'urn:xmpp:jingle:apps:rtp:video',
-                   'urn:xmpp:jingle:apps:rtp:rtcb-fb:0',
-                   'urn:xmpp:jingle:apps:rtp:rtp-hdrext:0',
-                   'urn:xmpp:jingle:apps:rtp:ssma:0',
-                   'urn:xmpp:jingle:apps:dtls:0',
-                   'urn:xmpp:jingle:apps:grouping:0',
-                   'urn:xmpp:jingle:apps:file-transfer:3',
-                   'urn:xmpp:jingle:transports:ice-udp:1',
-                   'urn:xmpp:jingle:transports.dtls-sctp:1',
-                   'urn:ietf:rfc:3264',
-                   'urn:ietf:rfc:5576',
-                   'urn:ietf:rfc:5888'
-               ];
+               'urn:xmpp:jingle:1',
+               'urn:xmpp:jingle:apps:rtp:1',
+               'urn:xmpp:jingle:apps:rtp:audio',
+               'urn:xmpp:jingle:apps:rtp:video',
+               'urn:xmpp:jingle:apps:rtp:rtcb-fb:0',
+               'urn:xmpp:jingle:apps:rtp:rtp-hdrext:0',
+               'urn:xmpp:jingle:apps:rtp:ssma:0',
+               'urn:xmpp:jingle:apps:dtls:0',
+               'urn:xmpp:jingle:apps:grouping:0',
+               'urn:xmpp:jingle:apps:file-transfer:3',
+               'urn:xmpp:jingle:transports:ice-udp:1',
+               'urn:xmpp:jingle:transports.dtls-sctp:1',
+               'urn:ietf:rfc:3264',
+               'urn:ietf:rfc:5576',
+               'urn:ietf:rfc:5888'
+            ];
             var i;
             for (i = 0; i < capabilities.length; i++) {
                self.connection.disco.addFeature(capabilities[i]);

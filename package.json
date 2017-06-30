@@ -1,6 +1,6 @@
 {
   "name": "strophe.jinglejs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "This package adds jingle.js to strophe.js",
   "main": "strophe.jinglejs.js",
   "author": "Klaus Herberth <klaus@jsxc.org>",
