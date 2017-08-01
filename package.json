@@ -1,6 +1,6 @@
 {
   "name": "strophe.jinglejs",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "This package adds jingle.js to strophe.js",
   "main": "strophe.jinglejs.js",
   "author": "Klaus Herberth <klaus@jsxc.org>",
@@ -17,7 +17,7 @@
     "jxt": "~3.0.8",
     "jxt-xmpp": "~2.4.0",
     "jxt-xmpp-types": "~3.0.0",
-    "webrtc-adapter": "~4.1.0"
+    "webrtc-adapter": "^4.2.1"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
