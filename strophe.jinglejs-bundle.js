@@ -1,5 +1,5 @@
 /*!
- * strophe.jinglejs v0.2.2 - 2017-08-01
+ * strophe.jinglejs v0.2.3 - 2017-08-21
  * 
  * Copyright (c) 2017 Klaus Herberth <klaus@jsxc.org> <br>
  * Released under the MIT license
@@ -7,7 +7,7 @@
  * Please see https://github.com/sualko/strophe.jinglejs/
  * 
  * @author Klaus Herberth <klaus@jsxc.org>
- * @version 0.2.2
+ * @version 0.2.3
  * @license MIT
  */
 
@@ -33984,6 +33984,10 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
          this.manager.on('send', function(data) {
 
             var iq = new IqStanza(data);
+
+            if (!iq.id) {
+               iq.id = self.connection.getUniqueId('sendIQ');
+            }
 
             self.connection.send($.parseXML(iq.toString()).getElementsByTagName('iq')[0]);
          });
