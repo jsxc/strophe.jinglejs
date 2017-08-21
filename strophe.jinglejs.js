@@ -112,6 +112,10 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
 
             var iq = new IqStanza(data);
 
+            if (!iq.id) {
+               iq.id = self.connection.getUniqueId('sendIQ');
+            }
+
             self.connection.send($.parseXML(iq.toString()).getElementsByTagName('iq')[0]);
          });
 
