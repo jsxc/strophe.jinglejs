@@ -12,7 +12,7 @@ jxt.use(require('jxt-xmpp'));
 
 var IqStanza = jxt.getDefinition('iq', 'jabber:client');
 
-(function($) {
+(function() {
    Strophe.addConnectionPlugin('jingle', {
       connection: null,
       peer_constraints: {},
@@ -71,15 +71,19 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
             'log:error': 'error.jingle'
          };
 
-         $.each(events, function(key, val) {
+         Object.entries(events).forEach(function(item) {
+            var key = item[0];
+            var val = item[1];
             self.manager.on(key, function() {
-               $(document).trigger(val, arguments);
+               var evt = new CustomEvent(val, arguments);
+               document.dispatchEvent(evt);
             });
          });
 
          self.manager.on('incoming', function(session) {
             session.on('change:connectionState', function(session, state) {
-               $(document).trigger('iceconnectionstatechange.jingle', [session.sid, session, state]);
+               var evt = new CustomEvent('iceconnectionstatechange.jingle', [session.sid, session, state]);
+               document.dispatchEvent(evt);
             });
          });
 
@@ -116,7 +120,7 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
                iq.id = self.connection.getUniqueId('sendIQ');
             }
 
-            self.connection.send($.parseXML(iq.toString()).getElementsByTagName('iq')[0]);
+            self.connection.send((new DOMParser()).parseFromString(iq.toString(), 'text/xml').getElementsByTagName('iq')[0]);
          });
 
          //@TODO add on client unavilable (this.manager.endPeerSessions(peer_jid_full, true))
@@ -132,7 +136,8 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
          var session = this.manager.createMediaSession(peerjid);
 
          session.on('change:connectionState', function(session, state) {
-            $(document).trigger('iceconnectionstatechange.jingle', [session.sid, session, state]);
+            var evt = new CustomEvent('iceconnectionstatechange.jingle', [session.sid, session, state]);
+            document.dispatchEvent(evt);
          });
 
          if (stream) {
@@ -169,4 +174,4 @@ var IqStanza = jxt.getDefinition('iq', 'jabber:client');
          this.manager.config.peerConnectionConstraints = constraints;
       }
    });
-}(jQuery));
+}());
