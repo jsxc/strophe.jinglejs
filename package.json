@@ -11,19 +11,19 @@
   },
   "license": "MIT",
   "dependencies": {
-    "getscreenmedia": "^4.0.1",
+    "getscreenmedia": "^5.0.2",
     "getusermedia": "^2.0.1",
     "jingle": "~3.0.3",
-    "jxt": "~3.0.8",
-    "jxt-xmpp": "~2.4.0",
+    "jxt": "~4.0.0",
+    "jxt-xmpp": "~3.3.0",
     "jxt-xmpp-types": "~3.0.0",
-    "webrtc-adapter": "^4.2.1"
+    "webrtc-adapter": "^6.4.8"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.3",
     "grunt-banner": "^0.6.0",
-    "grunt-browserify": "^5.0.0",
-    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-browserify": "^5.3.0",
+    "grunt-contrib-jshint": "^2.0.0",
     "grunt-jsbeautifier": "^0.2.13"
   }
 }
